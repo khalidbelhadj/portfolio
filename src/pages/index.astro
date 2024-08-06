@@ -1,0 +1,75 @@
+---
+import "../styles/globals.css";
+import { education, experience, skills, about } from "../consts";
+
+import Card from "../components/Card.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import ImageCarousel from "../components/ImageCarousel.astro";
+
+const images = await getCollection("images");
+---
+
+<BaseLayout>
+  <Card class="w-full h-full p-3 flex flex-col gap-5 overflow-x-clip">
+    <div
+      class="w-full aspect-square bg-foreground/10 flex gap-2 items-end justify-center"
+    >
+      <ImageCarousel images={images.map((img) => img.data.cover.src)} />
+    </div>
+    <h2>about</h2>
+    <p class="text-foreground/60">
+      {about}
+    </p>
+
+    <div
+      class="[&>*]:hover:cursor-pointer flex gap-2 text-foreground/60 hover:text-foreground transition-all"
+    >
+      <a target="_blank" href="/">résumé</a>
+      <div>/</div>
+      <a target="_blank" href="https://github.com/khalidbelhadj/">github</a>
+      <div>/</div>
+      <a
+        target="_blank"
+        href="https://www.linkedin.com/in/khalid-belhadj-2a022b251/">linkedin</a
+      >
+    </div>
+  </Card>
+  <Card class="flex flex-col gap-5 text-foreground/60">
+    <h2 class="text-foreground">education</h2>
+    {
+      education.map(({ dates, description }) => (
+        <div>
+          {dates}
+          <p>↳ {description}</p>
+        </div>
+      ))
+    }
+  </Card>
+  <Card class="flex flex-col gap-5 text-foreground/60">
+    <h2 class="text-foreground">experience</h2>
+    {
+      experience.map(({ dates, description }) => (
+        <div>
+          {dates}
+          <p>↳ {description}</p>
+        </div>
+      ))
+    }
+  </Card>
+  <Card class="text-foreground/60 flex flex-col gap-5">
+    <h2 class="text-foreground">skills</h2>
+    <div class="flex gap-5">
+      {
+        skills.map(({ type, values }) => (
+          <div>
+            {type}
+            {values.map((v) => (
+              <p>↳ {v}</p>
+            ))}
+          </div>
+        ))
+      }
+    </div>
+  </Card>
+</BaseLayout>

@@ -1,0 +1,81 @@
+---
+import "../styles/globals.css";
+
+import BaseHead from "../components/BaseHead.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { ViewTransitions } from "astro:transitions";
+---
+
+<!doctype html>
+<html
+  lang="en"
+  class="bg-background h-dvh w-dvw text-sm font-mono overflow-hidden dark"
+>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <ViewTransitions />
+  </head>
+
+  <body class="w-full h-full overflow-y-auto">
+    <div
+      class="max-w-screen-md mx-auto min-h-full max-md:pb-10 border-x flex flex-col"
+      transition:animate="fade"
+    >
+      <header
+        transition:name="header"
+        class="flex items-center justify-between text-foreground/60 hover:text-foreground transition-all p-3 max-md:flex-col max-md:items-start max-md:gap-2 border-b"
+      >
+        <div class="flex gap-2">
+          <div class="[&>*]:hover:cursor-pointer flex gap-2">
+            <a href="/">khalid belhadj</a>
+            <div>/</div>
+            <a href="/projects">projects</a>
+            <div>/</div>
+            <a href="/blog">blog</a>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
+          <div transition:persist id="location"></div>
+        </div>
+      </header>
+      <main class="w-full p-3 flex flex-col gap-3">
+        <slot />
+      </main>
+      <!-- <footer
+        class="border-t mt-auto p-3 hover:text-foreground text-foreground/60"
+      >
+        <div class="flex gap-2">
+          <button id="set-dark">dark</button>
+          <div>/</div>
+          <button id="set-light">light</button>
+        </div>
+      </footer> -->
+    </div>
+  </body>
+</html>
+
+<script>
+  console.log("here");
+  import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
+
+  const getLocation = async () => {
+    const data = await fetch(LOCATION_CHANNEL);
+    const json = await data.json();
+    const lastEntryId = +json["channel"]["last_entry_id"];
+    if (!lastEntryId) return DEFAULT_LOCATION;
+    const lastEntry = (json["feeds"] as any[]).find(
+      (e) => +e["entry_id"] === lastEntryId
+    );
+    if (!lastEntry) return DEFAULT_LOCATION;
+    const region = lastEntry["field1"];
+    const city = lastEntry["field2"];
+    return `${city}, ${region}`.toLocaleLowerCase();
+  };
+
+  const locationDiv = document.querySelector("#location");
+  if (!locationDiv) throw new Error("location div not found");
+  getLocation().then((location) => {
+    locationDiv.textContent = location;
+  });
+</script>

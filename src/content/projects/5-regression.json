@@ -1,0 +1,6 @@
+{
+    "title": "Linear Regression Visualiser",
+    "link": "https://github.com/khalidbelhadj/regression",
+    "description": "A C-based linear regression visualiser that uses OpenGL to render the mean squared error of a linear regression model. The model uses a simple gradient descent algorithm with MSE-loss to incrementally update the regression.",
+    "images": []
+}
