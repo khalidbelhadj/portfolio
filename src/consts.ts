@@ -8,7 +8,7 @@ export const LOCATION_CHANNEL =
   "https://api.thingspeak.com/channels/2616056/feeds.json";
 
 export const about =
-  "I'm a software engineer interested in machine learning, date science and product development. I'm currently in my 3rd year, studying AI and Computer Science at The University of Edinburgh. This website is for me to share my projects, ideas and interests.";
+  "I'm a software engineer interested in machine learning, date science and product development. I'm currently in my 4th year, studying AI and Computer Science at The University of Edinburgh. This website is for me to share my projects, ideas and interests.";
 
 export const education = [
   {
