@@ -10,7 +10,7 @@ export default function ImageCarouselHelper({ images }: { images: string[] }) {
       {images.map((image, index) => (
         <div
           className={cn(
-            "bg-red-100 w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-cover bg-center transition-opacity duration-300 ease-in-out opacity-0",
+            "bg-accent w-full h-full absolute top-0 left-0 right-0 bottom-0 bg-cover bg-center transition-opacity duration-300 ease-in-out opacity-0",
             currentImage === index && "opacity-100"
           )}
           style={{
