@@ -30,6 +30,7 @@ const projects = defineCollection({
       link: z.string(),
       description: z.string(),
       images: z.array(image()),
+      date: z.string(),
     }),
 });
 

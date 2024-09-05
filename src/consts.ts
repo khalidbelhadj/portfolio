@@ -7,18 +7,16 @@ export const DEFAULT_LOCATION = "edinburgh, united kingdom";
 export const LOCATION_CHANNEL =
   "https://api.thingspeak.com/channels/2616056/feeds.json";
 
-export const about =
-  "I'm a software engineer interested in machine learning, date science and product development. I'm currently in my 4th year, studying AI and Computer Science at The University of Edinburgh. This website is for me to share my projects, ideas and interests.";
+export const about = "building cool shit.";
 
 export const education = [
   {
-    dates: "2021 - 2025",
-    description:
-      "Artificial Intelligence and Computer Science (BSc Hons) at The University of Edinburgh",
+    dates: "2021/25",
+    description: "AI and CS (BSc Hons) at The University of Edinburgh",
   },
   {
-    dates: "2019 - 2021",
-    description: "International Baccalaureate at Uptown School Dubai",
+    dates: "2019/21",
+    description: "International Baccalaureate",
   },
 ];
 
@@ -28,22 +26,11 @@ export const experience = [
     description: "Morgan Stanley, Technology Summer Analyst",
   },
   {
-    dates: "2023 - 2024",
+    dates: "2023/24",
     description: "The University of Edinburgh, InfBase Tutoring",
   },
   {
     dates: "2023",
     description: "BennuAI, Software Development Contractor",
-  },
-];
-
-export const skills = [
-  {
-    type: "programming",
-    values: ["C/C++", "Java", "Rust", "Typescript", "React"],
-  },
-  {
-    type: "languages",
-    values: ["English", "Arabic", "French (Intermediate)"],
   },
 ];

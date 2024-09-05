@@ -2,5 +2,6 @@
     "title": "MNIST Digit Recognizer",
     "link": "https://github.com/khalidbelhadj/ML-CW",
     "description": "A digit recogniser using the MNIST dataset. The model is written from scratch using only numpy, and is trained using Stochastic Gradient Descent. The model uses a simple logistic regression model with a softmax activation function, and achieved over 98% accuracy.",
-    "images": []
+    "images": [],
+    "date": "2023"
 }

@@ -2,5 +2,6 @@
     "title": "Algorithms and Data Structures Implementations",
     "link": "https://github.com/khalidbelhadj/ads",
     "description": "Implementations of various algorithms taught in the Algorithms and Data Structures course at The University of Edinburgh. The implementations are written in python and are designed to be easy to understand for learning purposes.",
-    "images": []
+    "images": [],
+    "date": "2023"
 }

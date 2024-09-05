@@ -1,4 +1,5 @@
 ---
+import "@fontsource/geist-sans"
 import "../styles/globals.css";
 
 import BaseHead from "../components/BaseHead.astro";
@@ -9,7 +10,7 @@ import { ViewTransitions } from "astro:transitions";
 <!doctype html>
 <html
   lang="en"
-  class="bg-background h-dvh w-dvw text-sm font-mono overflow-hidden dark"
+  class="bg-background h-dvh w-dvw text-sm overflow-hidden dark"
 >
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
@@ -23,17 +24,9 @@ import { ViewTransitions } from "astro:transitions";
     >
       <header
         transition:name="header"
-        class="flex items-center justify-between text-foreground/60 hover:text-foreground transition-all p-3 max-md:flex-col max-md:items-start max-md:gap-2 border-b"
+        class="flex items-center justify-between text-foreground/60 transition-all p-3 max-md:flex-col max-md:items-start max-md:gap-2 border-b"
       >
-        <div class="flex gap-2">
-          <div class="[&>*]:hover:cursor-pointer flex gap-2">
-            <a href="/portfolio/">khalid belhadj</a>
-            <div>/</div>
-            <a href="/portfolio/projects">projects</a>
-            <div>/</div>
-            <a href="/portfolio/blog">blog</a>
-          </div>
-        </div>
+        <div>Khalid Belhadj</div>
         <div class="flex items-center gap-2">
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
           <div transition:persist id="location"></div>
@@ -42,21 +35,11 @@ import { ViewTransitions } from "astro:transitions";
       <main class="w-full p-3 flex flex-col gap-3">
         <slot />
       </main>
-      <!-- <footer
-        class="border-t mt-auto p-3 hover:text-foreground text-foreground/60"
-      >
-        <div class="flex gap-2">
-          <button id="set-dark">dark</button>
-          <div>/</div>
-          <button id="set-light">light</button>
-        </div>
-      </footer> -->
     </div>
   </body>
 </html>
 
 <script>
-  console.log("here");
   import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
 
   const getLocation = async () => {
@@ -70,7 +53,7 @@ import { ViewTransitions } from "astro:transitions";
     if (!lastEntry) return DEFAULT_LOCATION;
     const region = lastEntry["field1"];
     const city = lastEntry["field2"];
-    return `${city}, ${region}`.toLocaleLowerCase();
+    return `${city}, ${region}`;
   };
 
   const locationDiv = document.querySelector("#location");
