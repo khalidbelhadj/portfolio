@@ -12,11 +12,6 @@ const projects = await getCollection("projects");
 
 <BaseLayout>
   <Card class="w-full h-full p-3 flex flex-col gap-5 overflow-x-clip">
-    <!-- <div
-      class="w-full aspect-square bg-foreground/10 flex gap-2 items-end justify-center"
-    >
-      <ImageCarousel images={images.map((img) => img.data.cover.src)} />
-    </div> -->
     <h2 class="text-foreground/50">About</h2>
     <p class="text-foreground">
       {about}
@@ -28,13 +23,11 @@ const projects = await getCollection("projects");
       projects.map((project) => (
         <div class="flex flex-col gap-2">
           <div class="flex gap-2 items-center">
-          <a target="_blank" href={project.data.link} class="flex items-center hover:text-foreground/70 transition-colors">
-            <div>
-            {project.data.title}
-            </div>
+          <a target="_blank" href={project.data.link} class="flex items-center hover:text-foreground/70 transition-colors truncate">
+            <div class="truncate">{project.data.title}</div>
             <Fragment set:html={link} />
           </a>
-          <div class="flex-grow bg-border h-[0.1rem] rounded-full" />
+          <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
           <div class="text-foreground/40">{project.data.date}</div>
           </div>
         </div>
@@ -46,8 +39,8 @@ const projects = await getCollection("projects");
     {
       education.map(({ dates, description }) => (
         <div class="flex gap-2 items-center">
-          <p>{description}</p>
-          <div class="flex-grow bg-border h-[0.1rem] rounded-full" />
+          <p class="truncate">{description}</p>
+          <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
           <div class="text-foreground/40">{dates}</div>
         </div>
       ))
@@ -58,8 +51,8 @@ const projects = await getCollection("projects");
     {
       experience.map(({ dates, description }) => (
         <div class="flex gap-2 items-center">
-          <p>{description}</p>
-          <div class="flex-grow bg-border h-[0.1rem] rounded-full" />
+          <p class="truncate">{description}</p>
+          <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
           <div class="text-foreground/40">{dates}</div>
         </div>
       ))
