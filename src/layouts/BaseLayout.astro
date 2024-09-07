@@ -10,16 +10,16 @@ import { ViewTransitions } from "astro:transitions";
 <!doctype html>
 <html
   lang="en"
-  class="bg-background h-dvh w-dvw text-sm overflow-hidden dark"
+  class="bg-blue-400 w-dvw text-sm overflow-y-auto dark"
 >
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ViewTransitions />
   </head>
 
-  <body class="w-full h-full overflow-y-auto">
+  <body class="w-full">
     <div
-      class="max-w-screen-md mx-auto min-h-full max-md:pb-10 border-x flex flex-col"
+      class="max-w-screen-md mx-auto max-md:pb-10 border min-h-screen flex flex-col bg-background"
       transition:animate="fade"
     >
       <header
