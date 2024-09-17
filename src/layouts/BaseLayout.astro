@@ -1,5 +1,5 @@
 ---
-import "@fontsource/geist-sans"
+import "@fontsource/geist-sans";
 import "../styles/globals.css";
 
 import BaseHead from "../components/BaseHead.astro";
@@ -8,10 +8,7 @@ import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
-<html
-  lang="en"
-  class="bg-blue-400 w-dvw text-sm overflow-y-auto dark"
->
+<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto dark">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ViewTransitions />
@@ -19,7 +16,7 @@ import { ViewTransitions } from "astro:transitions";
 
   <body class="w-full">
     <div
-      class="max-w-screen-md mx-auto max-md:pb-10 border min-h-screen flex flex-col bg-background"
+      class="max-w-screen-md mx-auto max-md:pb-10 border-x min-h-screen flex flex-col bg-background"
       transition:animate="fade"
     >
       <header

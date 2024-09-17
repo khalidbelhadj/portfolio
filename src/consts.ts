@@ -7,7 +7,7 @@ export const DEFAULT_LOCATION = "edinburgh, united kingdom";
 export const LOCATION_CHANNEL =
   "https://api.thingspeak.com/channels/2616056/feeds.json";
 
-export const about = "building cool shit.";
+export const about = "";
 
 export const education = [
   {

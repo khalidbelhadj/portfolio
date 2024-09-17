@@ -71,6 +71,6 @@
   }
 
   ::selection {
-    @apply bg-blue-400/75;
+    @apply bg-foreground/50;
   }
 }
