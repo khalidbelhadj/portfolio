@@ -16,7 +16,7 @@ import { ViewTransitions } from "astro:transitions";
 
   <body class="w-full">
     <div
-      class="max-w-screen-md mx-auto max-md:pb-10 border-x min-h-screen flex flex-col bg-background"
+      class="max-w-screen-md mx-auto max-md:pb-10 md:border-x min-h-screen flex flex-col bg-background"
     >
       <header
         class="flex items-center justify-between text-foreground/60 transition-all p-3 border-b"
@@ -58,14 +58,16 @@ import { ViewTransitions } from "astro:transitions";
     locationDiv.textContent = location;
   });
 
-  // Set theme
+  const setDark = (dark: boolean) => {
+    document.documentElement.classList.toggle("dark", dark);
+  }
+
+  // Set initial theme
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  document.documentElement.classList.toggle("dark", prefersDark);
+  setDark(prefersDark);
 
   // Watch os theme change
   window
     .matchMedia("(prefers-color-scheme: dark)")
-    .addEventListener("change", (e) => {
-      document.documentElement.classList.toggle("dark", e.matches);
-    });
+    .addEventListener("change", (e) => setDark(e.matches));
 </script>

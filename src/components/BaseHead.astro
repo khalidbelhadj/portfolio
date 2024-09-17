@@ -14,7 +14,8 @@ const { title, description } = Astro.props;
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/portfolio/favicon.svg" />
 <meta name="generator" content={Astro.generator} />
-<meta name="theme-color" content="rgb(15, 15, 15)" />
+<meta name="theme-color" media="(prefers-color-scheme: light)" content="rgb(255, 255, 255)" />
+<meta name="theme-color" media="(prefers-color-scheme: dark)" content="rgb(15, 15, 15)" />
 
 <!-- Primary Meta Tags -->
 <title>{title}</title>
