@@ -8,7 +8,7 @@ import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto dark">
+<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto">
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ViewTransitions />
@@ -17,16 +17,14 @@ import { ViewTransitions } from "astro:transitions";
   <body class="w-full">
     <div
       class="max-w-screen-md mx-auto max-md:pb-10 border-x min-h-screen flex flex-col bg-background"
-      transition:animate="fade"
     >
       <header
-        transition:name="header"
         class="flex items-center justify-between text-foreground/60 transition-all p-3 border-b"
       >
         <div>Khalid Belhadj</div>
         <div class="flex items-center gap-2">
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
-          <div transition:persist id="location"></div>
+          <div transition:persist id="location">Edinburgh, United Kingdom</div>
         </div>
       </header>
       <main class="w-full p-3 flex flex-col gap-3">
@@ -53,9 +51,21 @@ import { ViewTransitions } from "astro:transitions";
     return `${city}, ${region}`;
   };
 
+  // Update location
   const locationDiv = document.querySelector("#location");
   if (!locationDiv) throw new Error("location div not found");
   getLocation().then((location) => {
     locationDiv.textContent = location;
   });
+
+  // Set theme
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  document.documentElement.classList.toggle("dark", prefersDark);
+
+  // Watch os theme change
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => {
+      document.documentElement.classList.toggle("dark", e.matches);
+    });
 </script>
