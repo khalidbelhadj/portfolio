@@ -19,7 +19,7 @@ export default function PDF() {
   useEffect(() => {
     if (data) return;
     const f = async () => {
-      for (let i = 0; i < 5; i++) {
+      for (let i = 0; i < 3; i++) {
         const url = `https://raw.githubusercontent.com/khalidbelhadj/cv/main/build/Khalid-Belhadj-CV.pdf`;
         const contentRes = await fetch(url);
         if (contentRes.ok) {
@@ -45,7 +45,7 @@ export default function PDF() {
         <Document
           loading={<></>}
           noData={<></>}
-          className="flex w-full flex-col gap-2 rounded-md overflow-clip outline outline-border"
+          className="flex w-full flex-col gap-2 rounded-md overflow-clip border"
           file={data}
           onLoadSuccess={({ numPages: nextNumPages }) => {
             if (docRef.current) setWidth(docRef.current.clientWidth);
