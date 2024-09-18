@@ -19,12 +19,15 @@ export default function PDF() {
   useEffect(() => {
     if (data) return;
     const f = async () => {
-      const url =
-        "https://raw.githubusercontent.com/khalidbelhadj/cv/main/build/Khalid-Belhadj-CV.pdf";
-      const contentRes = await fetch(url);
-      if (!contentRes.ok) return;
-      const blob = await contentRes.blob();
-      setData(blob);
+      for (let i = 0; i < 5; i++) {
+        const url = `https://raw.githubusercontent.com/khalidbelhadj/cv/main/build/Khalid-Belhadj-CV.pdf`;
+        const contentRes = await fetch(url);
+        if (contentRes.ok) {
+          const blob = await contentRes.blob();
+          setData(blob);
+          return;
+        }
+      }
     };
 
     f();

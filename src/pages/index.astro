@@ -11,34 +11,25 @@ const projects = await getCollection("projects");
 ---
 
 <BaseLayout>
-  <!-- <Card class="w-full h-full p-3 flex flex-col gap-5 overflow-x-clip">
-    <h2 class="text-foreground/50">About</h2>
-    <p class="text-foreground">
-      {about}
-    </p>
-  </Card> -->
-
   <Card class="flex text-sm gap-2 items-center">
-    <div
+    <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-    >
-      <a
         href="/resume"
-        >Résumé</a
-      >
-    </div>
-    <div
-      class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
     >
-      <a href="https://github.com/khalidbelhadj/" target="_blank">GitHub</a>
-    </div>
-    <div
+      Résumé
+    </a>
+    <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
+      href="https://github.com/khalidbelhadj/" target="_blank"
     >
-      <a href="https://www.linkedin.com/in/khalidbelhadj/" target="_blank"
-        >LinkedIn</a
-      >
-    </div>
+      GitHub
+    </a>
+    <a
+      class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
+      href="https://www.linkedin.com/in/khalidbelhadj/" target="_blank"
+    >
+      LinkedIn
+    </a>
   </Card>
   <Card class="flex flex-col gap-5">
     <h2 class="text-foreground/50">Projects</h2>
