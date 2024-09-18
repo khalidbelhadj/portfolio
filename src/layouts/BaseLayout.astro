@@ -21,7 +21,7 @@ import { ViewTransitions } from "astro:transitions";
       <header
         class="flex items-center justify-between text-foreground/60 transition-all p-3 border-b"
       >
-        <div>Khalid Belhadj</div>
+        <a href="/" class="hover:text-foreground transition-colors">Khalid Belhadj</a>
         <div class="flex items-center gap-2">
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
           <div transition:persist id="location">Edinburgh, United Kingdom</div>
@@ -35,6 +35,7 @@ import { ViewTransitions } from "astro:transitions";
 </html>
 
 <script>
+
   import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
 
   const getLocation = async () => {
@@ -58,7 +59,12 @@ import { ViewTransitions } from "astro:transitions";
     locationDiv.textContent = location;
   });
 
-  const setDark = (dark: boolean) => {
+</script>
+
+<script is:inline data-astro-rerun>
+  {
+
+  window.setDark = (dark) => {
     document.documentElement.classList.toggle("dark", dark);
   }
 
@@ -70,4 +76,5 @@ import { ViewTransitions } from "astro:transitions";
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => setDark(e.matches));
+  }
 </script>
