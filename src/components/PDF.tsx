@@ -4,7 +4,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
-import { RESUME_URL } from "../consts";
 import { getResume } from "../utils";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
