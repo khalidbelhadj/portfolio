@@ -7,6 +7,9 @@ export const DEFAULT_LOCATION = "edinburgh, united kingdom";
 export const LOCATION_CHANNEL =
   "https://api.thingspeak.com/channels/2616056/feeds.json";
 
+export const RESUME_URL =
+  "https://raw.githubusercontent.com/khalidbelhadj/cv/main/build/Khalid-Belhadj-CV.pdf";
+
 export const about = "";
 
 export const education = [

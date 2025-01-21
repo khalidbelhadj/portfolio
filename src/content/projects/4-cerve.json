@@ -1,7 +1,0 @@
-{
-    "title": "Cerve",
-    "link": "https://github.com/khalidbelhadj/cerve",
-    "description": "Cerve is an HTTP server library written in C. It is designed to be simple, fast and easy to use. The purpose of this project is to learn low level networking API's as well as parsing HTTP and JSON.",
-    "images": [],
-    "date": "2024"
-}

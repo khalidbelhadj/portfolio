@@ -21,10 +21,15 @@ import { ViewTransitions } from "astro:transitions";
       <header
         class="flex items-center justify-between text-foreground/60 transition-all p-3 border-b"
       >
-        <a href="/" class="hover:text-foreground transition-colors">Khalid Belhadj</a>
-        <div class="flex items-center gap-2">
+        <a href="/" class="hover:text-foreground transition-colors"
+          >Khalid Belhadj</a
+        >
+        <div
+          id="location-container"
+          class="flex items-center gap-2 opacity-0 transition-opacity"
+        >
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
-          <div transition:persist id="location">Edinburgh, United Kingdom</div>
+          <div transition:persist id="location"></div>
         </div>
       </header>
       <main class="w-full p-3 flex flex-col gap-3">
@@ -35,8 +40,8 @@ import { ViewTransitions } from "astro:transitions";
 </html>
 
 <script>
-
   import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
+  import { getResume } from "../utils";
 
   const getLocation = async () => {
     const data = await fetch(LOCATION_CHANNEL);
@@ -53,20 +58,23 @@ import { ViewTransitions } from "astro:transitions";
   };
 
   // Update location
+  const locationContainer = document.querySelector("#location-container");
   const locationDiv = document.querySelector("#location");
   if (!locationDiv) throw new Error("location div not found");
+  if (!locationContainer) throw new Error("location container not found");
+
   getLocation().then((location) => {
     locationDiv.textContent = location;
+    locationContainer.classList.remove("opacity-0");
   });
 
+  getResume();
 </script>
 
 <script is:inline data-astro-rerun>
-  {
-
   window.setDark = (dark) => {
     document.documentElement.classList.toggle("dark", dark);
-  }
+  };
 
   // Set initial theme
   const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
@@ -76,5 +84,4 @@ import { ViewTransitions } from "astro:transitions";
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => setDark(e.matches));
-  }
 </script>

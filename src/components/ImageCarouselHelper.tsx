@@ -3,7 +3,6 @@ import { cn } from "../utils";
 
 export default function ImageCarouselHelper({ images }: { images: string[] }) {
   const [currentImage, setCurrentImage] = useState(0);
-  console.log(images[currentImage]);
 
   return (
     <>

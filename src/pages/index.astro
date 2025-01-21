@@ -8,25 +8,29 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+// @ts-ignore
+projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
 
 <BaseLayout>
   <Card class="flex text-sm gap-2 items-center">
     <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-        href="/resume"
+      href="/resume"
     >
       Résumé
     </a>
     <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-      href="https://github.com/khalidbelhadj/" target="_blank"
+      href="https://github.com/khalidbelhadj/"
+      target="_blank"
     >
       GitHub
     </a>
     <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-      href="https://www.linkedin.com/in/khalidbelhadj/" target="_blank"
+      href="https://www.linkedin.com/in/khalidbelhadj/"
+      target="_blank"
     >
       LinkedIn
     </a>

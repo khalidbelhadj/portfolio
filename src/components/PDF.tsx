@@ -4,6 +4,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import "react-pdf/dist/esm/Page/AnnotationLayer.css";
 import "react-pdf/dist/esm/Page/TextLayer.css";
+import { RESUME_URL } from "../consts";
+import { getResume } from "../utils";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -14,23 +16,18 @@ export default function PDF() {
   const docRef = useRef<HTMLDivElement>(null);
   const [numPages, setNumPages] = useState<number>();
   const [width, setWidth] = useState<number>();
-  const [data, setData] = useState<Blob | null>(null);
+  const [data, setData] = useState<Blob | null>(
+    // @ts-ignore
+    (window.resumeBlob as Blob | undefined) ?? null
+  );
 
   useEffect(() => {
     if (data) return;
-    const f = async () => {
-      for (let i = 0; i < 3; i++) {
-        const url = `https://raw.githubusercontent.com/khalidbelhadj/cv/main/build/Khalid-Belhadj-CV.pdf`;
-        const contentRes = await fetch(url);
-        if (contentRes.ok) {
-          const blob = await contentRes.blob();
-          setData(blob);
-          return;
-        }
-      }
-    };
-
-    f();
+    // Going to resume url directly, blob not prefetched
+    getResume().then(() => {
+      // @ts-ignore
+      setData(window.resumeBlob as Blob);
+    });
   });
 
   return (
@@ -38,7 +35,7 @@ export default function PDF() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.1 }}
         ref={docRef}
         className="w-full"
       >
