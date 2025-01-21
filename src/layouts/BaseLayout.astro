@@ -26,7 +26,7 @@ import { ViewTransitions } from "astro:transitions";
         >
         <div
           id="location-container"
-          class="flex items-center gap-2 opacity-0 transition-opacity"
+          class="flex items-center gap-2 transition-opacity"
         >
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
           <div transition:persist id="location"></div>
@@ -58,14 +58,17 @@ import { ViewTransitions } from "astro:transitions";
   };
 
   // Update location
-  const locationContainer = document.querySelector("#location-container");
-  const locationDiv = document.querySelector("#location");
+  const locationContainer = document.getElementById("location-container");
+  const locationDiv = document.getElementById("location");
+
   if (!locationDiv) throw new Error("location div not found");
   if (!locationContainer) throw new Error("location container not found");
 
+  locationContainer.style.setProperty("opacity", "0");
+
   getLocation().then((location) => {
     locationDiv.textContent = location;
-    locationContainer.classList.remove("opacity-0");
+    locationContainer.style.setProperty("opacity", "1");
   });
 
   getResume();
