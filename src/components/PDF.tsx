@@ -41,6 +41,7 @@ export default function PDF() {
         <Document
           loading={<></>}
           noData={<></>}
+          error={<div className="p-3">Could not load Resume</div>}
           className="flex w-full flex-col gap-2 rounded-md overflow-clip border"
           file={data}
           onLoadSuccess={({ numPages: nextNumPages }) => {

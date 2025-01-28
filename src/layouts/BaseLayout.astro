@@ -73,18 +73,17 @@ import { ViewTransitions } from "astro:transitions";
 
   getResume();
 </script>
-
-<script is:inline data-astro-rerun>
+<script is:inline>
   window.setDark = (dark) => {
     document.documentElement.classList.toggle("dark", dark);
   };
-
-  // Set initial theme
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  setDark(prefersDark);
 
   // Watch os theme change
   window
     .matchMedia("(prefers-color-scheme: dark)")
     .addEventListener("change", (e) => setDark(e.matches));
+</script>
+
+<script is:inline data-astro-rerun>
+  setDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
 </script>
