@@ -41,7 +41,6 @@ import { ViewTransitions } from "astro:transitions";
 
 <script>
   import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
-  import { getResume } from "../utils";
 
   const getLocation = async () => {
     const data = await fetch(LOCATION_CHANNEL);
@@ -70,8 +69,6 @@ import { ViewTransitions } from "astro:transitions";
     locationDiv.textContent = location;
     locationContainer.style.setProperty("opacity", "1");
   });
-
-  getResume();
 </script>
 <script is:inline>
   window.setDark = (dark) => {
