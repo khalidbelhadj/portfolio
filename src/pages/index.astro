@@ -1,10 +1,9 @@
 ---
 import "../styles/globals.css";
 import { education, experience } from "../consts";
-import link from "../assets/link.svg?raw";
 
 import Card from "../components/Card.astro";
-import BaseLayout from "../layouts/BaseLayout.astro";
+import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
@@ -12,7 +11,7 @@ const projects = await getCollection("projects");
 projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
 
-<BaseLayout>
+<Layout>
   <Card class="flex text-sm gap-2 items-center">
     <a
       class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
@@ -41,7 +40,6 @@ projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
               class="flex items-center hover:text-foreground/70 transition-colors truncate"
             >
               <div class="truncate">{project.data.title}</div>
-              <Fragment set:html={link} />
             </a>
             <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
             <div class="text-foreground/40">{project.data.date}</div>
@@ -74,4 +72,4 @@ projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
       ))
     }
   </Card>
-</BaseLayout>
+</Layout>

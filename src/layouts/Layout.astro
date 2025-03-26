@@ -2,15 +2,15 @@
 import "@fontsource/geist-sans";
 import "../styles/globals.css";
 
-import BaseHead from "../components/BaseHead.astro";
+import Head from "../components/Head.astro";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { ViewTransitions } from "astro:transitions";
 ---
 
 <!doctype html>
-<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto">
+<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto dark">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <Head title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <ViewTransitions />
   </head>
 
