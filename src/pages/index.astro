@@ -1,14 +1,23 @@
 ---
 import "../styles/globals.css";
-import { education, experience } from "../consts";
 
 import Card from "../components/Card.astro";
 import Layout from "../layouts/Layout.astro";
-import { getCollection } from "astro:content";
 
-const projects = await getCollection("projects");
-// @ts-ignore
-projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+// const projects = await getCollection("projects");
+// // @ts-ignore
+// projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+
+type GHProject = {
+  author: string;
+  name: string;
+  description: string;
+  language: string;
+  stars: number;
+  forks: number;
+};
+const res = await fetch("https://pinned.berrysauce.dev/get/khalidbelhadj");
+const pinned = (await res.json()) as GHProject[];
 ---
 
 <Layout>
@@ -31,45 +40,26 @@ projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
   <Card class="flex flex-col gap-5">
     <h2 class="text-foreground/50">Projects</h2>
     {
-      projects.map((project) => (
+      pinned.map((project) => (
         <div class="flex flex-col gap-2">
-          <div class="flex gap-2 items-center">
-            <a
-              target="_blank"
-              href={project.data.link}
-              class="flex items-center hover:text-foreground/70 transition-colors truncate"
-            >
-              <div class="truncate">{project.data.title}</div>
-            </a>
-            <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
-            <div class="text-foreground/40">{project.data.date}</div>
-          </div>
+          <a
+            target="_blank"
+            href={`https://github.com/${project.author}/${project.name}`}
+            class="hover:text-foreground/70 transition-colors truncate flex flex-col gap-1"
+          >
+            <div class="flex gap-2 items-center">
+              <div class="truncate">{project.name}</div>
+              <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
+              <div class="text-foreground/40">{project.language}</div>
+            </div>
+          </a>
         </div>
       ))
     }
   </Card>
-  <Card class="flex flex-col gap-5">
-    <h2 class="text-foreground/50">Education</h2>
-    {
-      education.map(({ dates, description }) => (
-        <div class="flex gap-2 items-center">
-          <p class="truncate">{description}</p>
-          <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
-          <div class="text-foreground/40">{dates}</div>
-        </div>
-      ))
-    }
-  </Card>
-  <Card class="flex flex-col gap-5">
-    <h2 class="text-foreground/50">Experience</h2>
-    {
-      experience.map(({ dates, description }) => (
-        <div class="flex gap-2 items-center">
-          <p class="truncate">{description}</p>
-          <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
-          <div class="text-foreground/40">{dates}</div>
-        </div>
-      ))
-    }
+  <Card>
+    <h2 class="text-foreground/50">
+      Posts <span class="italic text-foreground/40">(Maybe some day...)</span>
+    </h2>
   </Card>
 </Layout>

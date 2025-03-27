@@ -2,10 +2,10 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = "Khalid Belhadj";
-export const SITE_DESCRIPTION = "Khalid's personal portfolio";
-export const DEFAULT_LOCATION = "edinburgh, united kingdom";
+export const SITE_DESCRIPTION = "Khalid's Personal Portfolio";
+export const DEFAULT_LOCATION = "Edinburgh, United Kingdom";
 export const LOCATION_CHANNEL =
-  "https://api.thingspeak.com/channels/2616056/feeds.json";
+  "https://api.thingspeak.com/channels/2616056/feeds.json?results=1";
 
 export const about = "";
 

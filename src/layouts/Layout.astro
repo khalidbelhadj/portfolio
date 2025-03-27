@@ -3,8 +3,31 @@ import "@fontsource/geist-sans";
 import "../styles/globals.css";
 
 import Head from "../components/Head.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import {
+  SITE_TITLE,
+  SITE_DESCRIPTION,
+  LOCATION_CHANNEL,
+  DEFAULT_LOCATION,
+} from "../consts";
 import { ViewTransitions } from "astro:transitions";
+
+let location = DEFAULT_LOCATION;
+try {
+  const data = await fetch(LOCATION_CHANNEL);
+  if (!data.ok) throw new Error("Failed to fetch location data");
+  const json = await data.json();
+  const lastEntryId = +json["channel"]["last_entry_id"];
+  if (!lastEntryId) return DEFAULT_LOCATION;
+  const lastEntry = (json["feeds"] as any[]).find(
+    (e) => +e["entry_id"] === lastEntryId
+  );
+  if (!lastEntry) return DEFAULT_LOCATION;
+  const region = lastEntry["field1"];
+  const city = lastEntry["field2"];
+  location = `${city}, ${region}`;
+} catch (e) {
+  console.error(e);
+}
 ---
 
 <!doctype html>
@@ -29,7 +52,7 @@ import { ViewTransitions } from "astro:transitions";
           class="flex items-center gap-2 transition-opacity"
         >
           <div class="bg-green-700 w-2 h-2 rounded-full animate-pulse"></div>
-          <div transition:persist id="location"></div>
+          <div id="location">{location}</div>
         </div>
       </header>
       <main class="w-full p-3 flex flex-col gap-3">
@@ -39,37 +62,6 @@ import { ViewTransitions } from "astro:transitions";
   </body>
 </html>
 
-<script>
-  import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
-
-  const getLocation = async () => {
-    const data = await fetch(LOCATION_CHANNEL);
-    const json = await data.json();
-    const lastEntryId = +json["channel"]["last_entry_id"];
-    if (!lastEntryId) return DEFAULT_LOCATION;
-    const lastEntry = (json["feeds"] as any[]).find(
-      (e) => +e["entry_id"] === lastEntryId
-    );
-    if (!lastEntry) return DEFAULT_LOCATION;
-    const region = lastEntry["field1"];
-    const city = lastEntry["field2"];
-    return `${city}, ${region}`;
-  };
-
-  // Update location
-  const locationContainer = document.getElementById("location-container");
-  const locationDiv = document.getElementById("location");
-
-  if (!locationDiv) throw new Error("location div not found");
-  if (!locationContainer) throw new Error("location container not found");
-
-  locationContainer.style.setProperty("opacity", "0");
-
-  getLocation().then((location) => {
-    locationDiv.textContent = location;
-    locationContainer.style.setProperty("opacity", "1");
-  });
-</script>
 <script is:inline>
   window.setDark = (dark) => {
     document.documentElement.classList.toggle("dark", dark);
