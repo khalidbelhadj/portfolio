@@ -1,36 +1,76 @@
 // Place any global data in this file.
 // You can import this data from anywhere in your site by using the `import` keyword.
 
-export const SITE_TITLE = "Khalid Belhadj";
-export const SITE_DESCRIPTION = "Khalid's Personal Portfolio";
+export const TITLE = "Khalid Belhadj";
+export const DESCRIPTION = "Personal website of Khalid Belhadj";
 export const DEFAULT_LOCATION = "Edinburgh, United Kingdom";
 export const LOCATION_CHANNEL =
   "https://api.thingspeak.com/channels/2616056/feeds.json?results=1";
 
-export const about = "";
+export type Project = {
+  name: string;
+  description: string;
+  url: string;
+  year: string;
+};
 
-export const education = [
+export const projects: Project[] = [
   {
-    dates: "2021/25",
-    description: "AI and CS (BSc Hons) at The University of Edinburgh",
+    name: "Pacing Auction",
+    description:
+      "A Python framework for simulating and analysing first-price pacing auctions with budget constraints",
+    url: "https://www.github.com/khalidbelhadj/pacing-auction",
+    year: "2025",
   },
   {
-    dates: "2019/21",
-    description: "International Baccalaureate",
-  },
-];
-
-export const experience = [
-  {
-    dates: "2024",
-    description: "Morgan Stanley, Technology Summer Analyst",
+    name: "Algorithms and Data Structures",
+    description:
+      "Python implementations of Algorithms and Data Structures from The University of Edinburgh",
+    url: "https://www.github.com/khalidbelhadj/ads",
+    year: "2024",
   },
   {
-    dates: "2023/24",
-    description: "The University of Edinburgh, InfBase Tutoring",
+    name: "JSON Parser",
+    description:
+      "A JSON parser written in C, with a focus on performance and memory efficiency",
+    url: "https://www.github.com/khalidbelhadj/json_parser",
+    year: "2024",
   },
   {
-    dates: "2023",
-    description: "BennuAI, Software Development Contractor",
+    name: "Cerve",
+    description: "A basic HTTP server written in C",
+    url: "https://www.github.com/khalidbelhadj/cerve",
+    year: "2023",
+  },
+  {
+    name: "Interpreter",
+    description:
+      "A simple interpreter for a custom programming language, written in Rust",
+    url: "https://www.github.com/khalidbelhadj/interpreter",
+    year: "2024",
+  },
+  {
+    name: "Game of Life",
+    description: "C++ implementation of Conway's Game of Life using Raylib",
+    url: "https://github.com/khalidbelhadj/game_of_life",
+    year: "2024",
+  },
+  {
+    name: "Regression",
+    description: "C implementation of MSE regression using gradient descent",
+    url: "https://www.github.com/khalidbelhadj/regression",
+    year: "2024",
+  },
+  {
+    name: "BMS Capital",
+    description: "Main website for BMS Capital, a student-led investment fund",
+    url: "https://www.github.com/khalidbelhadj/bms-capital",
+    year: "2024",
+  },
+  {
+    name: "K-Means Visualizer",
+    description: "C program for visualizing the K-Means clustering algorithm",
+    url: "https://www.github.com/khalidbelhadj/kmeans",
+    year: "2025",
   },
 ];

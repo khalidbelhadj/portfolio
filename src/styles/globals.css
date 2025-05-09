@@ -29,7 +29,8 @@
     --chart-3: 197 37% 24%;
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
-    font-family: "GeistSans", sans-serif;
+    /* font-family: "GeistSans", sans-serif; */
+    /* font-family: "Inter", sans-serif; */
   }
 
   .dark {
@@ -71,6 +72,6 @@
   }
 
   ::selection {
-    @apply bg-foreground/50;
+    @apply bg-foreground/25;
   }
 }

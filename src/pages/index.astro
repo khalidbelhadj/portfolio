@@ -1,65 +1,112 @@
 ---
 import "../styles/globals.css";
+import { LOCATION_CHANNEL, DEFAULT_LOCATION, projects } from "../consts";
+import Head from "../components/Head.astro";
 
-import Card from "../components/Card.astro";
-import Layout from "../layouts/Layout.astro";
-
-// const projects = await getCollection("projects");
-// // @ts-ignore
-// projects.sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
-
-type GHProject = {
-  author: string;
-  name: string;
-  description: string;
-  language: string;
-  stars: number;
-  forks: number;
-};
-const res = await fetch("https://pinned.berrysauce.dev/get/khalidbelhadj");
-const pinned = (await res.json()) as GHProject[];
+let location = DEFAULT_LOCATION;
+try {
+  const data = await fetch(LOCATION_CHANNEL);
+  if (!data.ok) throw new Error("Failed to fetch location data");
+  const json = await data.json();
+  const lastEntryId = +json["channel"]["last_entry_id"];
+  if (!lastEntryId) return DEFAULT_LOCATION;
+  const lastEntry = (json["feeds"] as any[]).find(
+    (e) => +e["entry_id"] === lastEntryId
+  );
+  if (!lastEntry) return DEFAULT_LOCATION;
+  const region = lastEntry["field1"];
+  const city = lastEntry["field2"];
+  location = `${city}, ${region}`;
+} catch (e) {
+  console.error(e);
+}
 ---
 
-<Layout>
-  <Card class="flex text-sm gap-2 items-center">
-    <a
-      class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-      href="https://github.com/khalidbelhadj/"
-      target="_blank"
+<html lang="en" class="bg-background w-dvw text-sm overflow-y-auto">
+  <Head />
+  <body class="w-full">
+    <div
+      class="max-w-screen-md mx-auto max-md:pb-10 md:border-x min-h-screen flex flex-col bg-background p-10"
     >
-      GitHub
-    </a>
-    <a
-      class="bg-border py-1 px-3 rounded-lg flex items-center hover:bg-border/70 hover:cursor-pointer transition-colors text-foreground/80 hover:text-foreground/70"
-      href="https://www.linkedin.com/in/khalidbelhadj/"
-      target="_blank"
-    >
-      LinkedIn
-    </a>
-  </Card>
-  <Card class="flex flex-col gap-5">
-    <h2 class="text-foreground/50">Projects</h2>
-    {
-      pinned.map((project) => (
-        <div class="flex flex-col gap-2">
+      <!-- Header -->
+      <div
+        class="flex items-center justify-between text-foreground/50 font-light"
+      >
+        <div>Khalid Belhadj</div>
+        Currently in {location}
+      </div>
+
+      <div class="pt-10">
+        Currently finishing up uni, probably going to big tech
+      </div>
+
+      <!-- Projects -->
+      <div class="pt-10">
+        <h1 class="font-semibold">Projects</h1>
+        <div class="flex flex-col gap-5 pt-5">
+          {
+            projects.map((p) => (
+              <a href={p.url} target="_blank" class="group">
+                <div>
+                  <span class="font-medium group-hover:underline">
+                    {p.name}
+                  </span>
+                  <span class="text-foreground/50 font-light">({p.year})</span>
+                </div>
+                <div class="text-foreground/75 font-light">{p.description}</div>
+              </a>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="pt-10">
+        <h1 class="font-semibold">Posts</h1>
+        <div class="italic text-foreground/75 font-light">
+          Maybe some day...
+        </div>
+      </div>
+
+      <div class="mt-auto pt-10 flex items-center justify-between">
+        <div class="flex items-center gap-1">
           <a
+            href="https://www.github.com/khalidbelhadj"
             target="_blank"
-            href={`https://github.com/${project.author}/${project.name}`}
-            class="hover:text-foreground/70 transition-colors truncate flex flex-col gap-1"
+            class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75"
           >
-            <div class="flex gap-2 items-center">
-              <div class="truncate">{project.name}</div>
-              <div class="flex-grow bg-border h-[0.1rem] rounded-full min-w-5" />
-              <div class="text-foreground/40">{project.language}</div>
-            </div>
+            GitHub
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/khalidbelhadj"
+            target="_blank"
+            class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75"
+          >
+            LinkedIn
           </a>
         </div>
-      ))
-    }
-  </Card>
-  <Card>
-    <h2 class="text-foreground/50">
-      Posts <span class="italic text-foreground/40">(Maybe some day...)</span>
-    </h2>
-  </Card>
-</Layout>
+
+        <div>
+          <div class="text-foreground/50 font-light">
+            &#169; {new Date().getFullYear()} Khalid Belhadj
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+  window.setDark = (dark) => {
+    document.documentElement.classList.toggle("dark", dark);
+  };
+
+  // Watch os theme change
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => setDark(e.matches));
+</script>
+
+<script is:inline data-astro-rerun>
+  setDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+</script>
