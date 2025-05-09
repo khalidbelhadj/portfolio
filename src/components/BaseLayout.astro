@@ -1,0 +1,56 @@
+---
+import Head from "./Head.astro";
+import { LOCATION_CHANNEL, DEFAULT_LOCATION } from "../consts";
+
+let location = DEFAULT_LOCATION;
+try {
+  const data = await fetch(LOCATION_CHANNEL);
+  if (!data.ok) throw new Error("Failed to fetch location data");
+  const json = await data.json();
+  const lastEntryId = +json["channel"]["last_entry_id"];
+  if (!lastEntryId) return DEFAULT_LOCATION;
+  const lastEntry = (json["feeds"] as any[]).find(
+    (e) => +e["entry_id"] === lastEntryId
+  );
+  if (!lastEntry) return DEFAULT_LOCATION;
+  const region = lastEntry["field1"];
+  const city = lastEntry["field2"];
+  location = `${city}, ${region}`;
+} catch (e) {
+  console.error(e);
+}
+---
+
+<html lang="en" class="bg-background w-dvw overflow-y-auto text-sm">
+  <Head />
+  <body class="w-full">
+    <div
+      class="max-w-screen-md mx-auto max-md:pb-10 md:border-x min-h-screen flex flex-col bg-background p-10"
+    >
+      <!-- Header -->
+      <div
+        class="flex items-center justify-between text-foreground/50 font-light"
+      >
+        <a href="/" class="hover:text-foreground">Khalid Belhadj</a>
+        Currently in {location}
+      </div>
+
+      <slot />
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+  window.setDark = (dark) => {
+    document.documentElement.classList.toggle("dark", dark);
+  };
+
+  // Watch os theme change
+  window
+    .matchMedia("(prefers-color-scheme: dark)")
+    .addEventListener("change", (e) => setDark(e.matches));
+</script>
+
+<script is:inline data-astro-rerun>
+  setDark(window.matchMedia("(prefers-color-scheme: dark)").matches);
+</script>

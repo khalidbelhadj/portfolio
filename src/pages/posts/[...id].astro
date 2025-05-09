@@ -1,0 +1,26 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, render } from "astro:content";
+import BaseLayout from "../../components/BaseLayout.astro";
+
+export const prerender = true;
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("posts");
+  return posts.map((post) => ({
+    params: { id: post.data.id },
+    props: { post },
+  }));
+}) satisfies GetStaticPaths;
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<BaseLayout>
+  <h1 class="pt-10 text-lg font-semibold">{post.data.title}</h1>
+  <hr class="my-5" />
+  <article class="prose !max-w-full dark:prose-invert">
+    <Content />
+  </article>
+</BaseLayout>
