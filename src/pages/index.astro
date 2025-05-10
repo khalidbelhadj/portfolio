@@ -28,10 +28,17 @@ const previewPosts = posts
     <div class="flex flex-col gap-5 pt-5">
       {
         projects.map((p) => (
-          <a href={p.url} target="_blank" class="group">
-            <div>
+          <a href={p.url} target="_blank" class="group flex flex-col">
+            <div class="flex items-center gap-2">
               <span class="font-medium group-hover:underline">{p.name}</span>
-              <span class="text-foreground/50 font-light">({p.year})</span>
+              <span class="text-foreground/50 font-light">{p.year}</span>
+              <div class="flex items-center gap-1">
+                {p.languages.map((l) => (
+                  <div class="text-foreground/75 font-light text-sm bg-foreground/10 px-2 rounded-sm">
+                    {l}
+                  </div>
+                ))}
+              </div>
             </div>
             <div class="text-foreground/75 font-light">{p.description}</div>
           </a>

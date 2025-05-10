@@ -12,6 +12,7 @@ export type Project = {
   description: string;
   url: string;
   year: string;
+  languages: string[];
 };
 
 export const projects: Project[] = [
@@ -21,6 +22,7 @@ export const projects: Project[] = [
       "A Python framework for simulating and analysing first-price pacing auctions with budget constraints",
     url: "https://www.github.com/khalidbelhadj/pacing-auction",
     year: "2025",
+    languages: ["Python"],
   },
   {
     name: "Algorithms and Data Structures",
@@ -28,6 +30,7 @@ export const projects: Project[] = [
       "Python implementations of Algorithms and Data Structures from The University of Edinburgh",
     url: "https://www.github.com/khalidbelhadj/ads",
     year: "2024",
+    languages: ["Python"],
   },
   {
     name: "JSON Parser",
@@ -35,12 +38,14 @@ export const projects: Project[] = [
       "A JSON parser written in C, with a focus on performance and memory efficiency",
     url: "https://www.github.com/khalidbelhadj/json_parser",
     year: "2024",
+    languages: ["C"],
   },
   {
     name: "Cerve",
     description: "A basic HTTP server written in C",
     url: "https://www.github.com/khalidbelhadj/cerve",
     year: "2023",
+    languages: ["C"],
   },
   {
     name: "Interpreter",
@@ -48,29 +53,34 @@ export const projects: Project[] = [
       "A simple interpreter for a custom programming language, written in Rust",
     url: "https://www.github.com/khalidbelhadj/interpreter",
     year: "2024",
+    languages: ["Rust"],
   },
   {
     name: "Game of Life",
     description: "C++ implementation of Conway's Game of Life using Raylib",
     url: "https://github.com/khalidbelhadj/game_of_life",
     year: "2024",
+    languages: ["C++"],
   },
   {
     name: "Regression",
     description: "C implementation of MSE regression using gradient descent",
     url: "https://www.github.com/khalidbelhadj/regression",
     year: "2024",
+    languages: ["C"],
   },
   {
     name: "BMS Capital",
     description: "Main website for BMS Capital, a student-led investment fund",
     url: "https://www.github.com/khalidbelhadj/bms-capital",
     year: "2024",
+    languages: ["TypeScript", "React"],
   },
   {
     name: "K-Means Visualizer",
     description: "C program for visualizing the K-Means clustering algorithm",
     url: "https://www.github.com/khalidbelhadj/kmeans",
     year: "2025",
+    languages: ["C"],
   },
 ];
