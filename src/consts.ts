@@ -25,6 +25,13 @@ export const projects: Project[] = [
     languages: ["Python"],
   },
   {
+    name: "Order Book Simulation",
+    description: "C++ implementation of a limit order book simulator",
+    url: "https://github.com/khalidbelhadj/order_book_simulation",
+    year: "2024",
+    languages: ["C++"],
+  },
+  {
     name: "Algorithms and Data Structures",
     description:
       "Python implementations of Algorithms and Data Structures from The University of Edinburgh",
