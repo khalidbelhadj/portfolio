@@ -40,6 +40,14 @@ export const projects: Project[] = [
     languages: ["Python"],
   },
   {
+    name: "Handwritten Digits Classifier",
+    description:
+      "Classifier for the MNIST dataset using Stochastic Gradient Descent from scratch",
+    url: "https://github.com/khalidbelhadj/ml-cw",
+    year: "2024",
+    languages: ["Python"],
+  },
+  {
     name: "JSON Parser",
     description:
       "A JSON parser written in C, with a focus on performance and memory efficiency",
