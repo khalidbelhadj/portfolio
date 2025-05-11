@@ -40,6 +40,14 @@ export const projects: Project[] = [
     languages: ["Python"],
   },
   {
+    name: "Interpreter",
+    description:
+      "A simple interpreter for a custom programming language, written in Rust",
+    url: "https://www.github.com/khalidbelhadj/interpreter",
+    year: "2024",
+    languages: ["Rust"],
+  },
+  {
     name: "Handwritten Digits Classifier",
     description:
       "Classifier for the MNIST dataset using Stochastic Gradient Descent from scratch",
@@ -61,14 +69,6 @@ export const projects: Project[] = [
     url: "https://www.github.com/khalidbelhadj/cerve",
     year: "2023",
     languages: ["C"],
-  },
-  {
-    name: "Interpreter",
-    description:
-      "A simple interpreter for a custom programming language, written in Rust",
-    url: "https://www.github.com/khalidbelhadj/interpreter",
-    year: "2024",
-    languages: ["Rust"],
   },
   {
     name: "Game of Life",
