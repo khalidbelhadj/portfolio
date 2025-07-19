@@ -29,10 +29,12 @@ try {
     >
       <!-- Header -->
       <div
-        class="flex items-center justify-between text-foreground/50 font-light"
+        class="flex gap-2 items-center justify-between text-foreground/50 font-light max-sm:flex-col"
       >
-        <a href="/" class="hover:text-foreground">Khalid Belhadj</a>
-        Currently in {location}
+        <a href="/" class="hover:text-foreground text-nowrap">Khalid Belhadj</a>
+        <div class="text-nowrap">
+          Currently in {location}
+        </div>
       </div>
 
       <slot />

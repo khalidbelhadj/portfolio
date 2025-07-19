@@ -7,7 +7,7 @@ const { Content } = await render(post);
 ---
 
 <div
-  class="group h-56 max-h-56 relative overflow-hidden flex flex-col gap-2 hover:cursor-pointer"
+  class="group h-56 max-h-24 relative overflow-hidden flex flex-col gap-2 hover:cursor-pointer"
 >
   <!-- Header -->
   <div class="flex flex-col gap-1">
@@ -27,14 +27,14 @@ const { Content } = await render(post);
 
   <!-- Content preview -->
   <div
-    class="text-foreground/75 font-light prose prose-sm max-w-full max-h-56 overflow-hidden dark:prose-invert"
+    class="text-foreground/75 font-light prose prose-sm max-w-full max-h-24 overflow-hidden dark:prose-invert"
   >
     <Content />
   </div>
 
   <!-- Background gradient -->
   <a
-    class="w-full h-56 bg-gradient-to-t to-75% from-background absolute inset-0 hover:to-50%"
+    class="w-full h-24 bg-gradient-to-t to-75% from-background absolute inset-0 hover:to-50%"
     href={`/posts/${post.slug}`}
   >
   </a>

@@ -34,7 +34,7 @@ const previewPosts = posts
         projects.map((p) => (
           <a href={p.url} target="_blank" class="group flex flex-col">
             <div class="flex items-center gap-2">
-              <span class="font-medium group-hover:underline">{p.name}</span>
+              <span class="font-medium">{p.name}</span>
               <span class="text-foreground/50 font-light">{p.year}</span>
               <div class="flex items-center gap-1">
                 {p.languages.map((l) => (
@@ -91,12 +91,14 @@ const previewPosts = posts
     }
   </div>
 
-  <div class="mt-auto pt-10 flex items-center justify-between">
+  <div
+    class="mt-auto pt-10 flex items-center justify-between gap-2 max-sm:flex-col"
+  >
     <div class="flex items-center gap-1">
       <a
         href="/public-key.txt"
         target="_blank"
-        class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75"
+        class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75 text-nowrap"
       >
         PGP Public Key
       </a>
@@ -118,7 +120,7 @@ const previewPosts = posts
     </div>
 
     <div>
-      <div class="text-foreground/50 font-light">
+      <div class="text-foreground/50 font-light text-nowrap">
         &#169; {new Date().getFullYear()} Khalid Belhadj
       </div>
     </div>
