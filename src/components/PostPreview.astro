@@ -4,6 +4,7 @@ import { render } from "astro:content";
 const { post } = Astro.props;
 
 const { Content } = await render(post);
+console.log(post);
 ---
 
 <div
@@ -14,7 +15,7 @@ const { Content } = await render(post);
     <span class="font-medium group-hover:underline">
       {post.data.title}
     </span>
-    <span class="text-foreground/50 font-light text-sm">
+    <span class="text-foreground/50 text-sm">
       {
         post.data.date.toLocaleDateString("en-UK", {
           year: "numeric",
@@ -27,7 +28,7 @@ const { Content } = await render(post);
 
   <!-- Content preview -->
   <div
-    class="text-foreground/75 font-light prose prose-sm max-w-full max-h-24 overflow-hidden dark:prose-invert"
+    class="text-foreground/75 prose prose-sm max-w-full max-h-24 overflow-hidden dark:prose-invert"
   >
     <Content />
   </div>

@@ -15,13 +15,7 @@ const previewPosts = posts
 ---
 
 <BaseLayout>
-  <div class="pt-10">
-    Currently finishing up uni, going to be a software engineer at <a
-      href="https://www.palantir.com/uk"
-      target="_blank"
-      class="text-blue-500 hover:underline">Palantir</a
-    >
-  </div>
+  <div class="pt-10">Software engineer, hope to write some posts soon</div>
 
   <!-- Projects -->
   <div class="pt-10">
@@ -32,24 +26,24 @@ const previewPosts = posts
     <div class="flex flex-col gap-5 pt-5">
       {
         projects.map((p) => (
-          <a href={p.url} target="_blank" class="group flex flex-col">
+          <a href={p.url} target="_blank" class="group flex flex-col group">
             <div class="flex items-center gap-2">
-              <span class="font-medium">{p.name}</span>
-              <span class="text-foreground/50 font-light">{p.year}</span>
+              <span class="font-medium group-hover:underline">{p.name}</span>
+              <span class="text-foreground/50">{p.year}</span>
               <div class="flex items-center gap-1">
                 {p.languages.map((l) => (
-                  <div class="text-foreground/75 font-light text-sm bg-foreground/10 px-2 rounded-sm">
+                  <div class="text-foreground/75 text-sm bg-foreground/10 px-2 rounded-sm">
                     {l}
                   </div>
                 ))}
               </div>
             </div>
-            <div class="text-foreground/75 font-light">{p.description}</div>
+            <div class="text-foreground/75">{p.description}</div>
           </a>
         ))
       }
     </div>
-    <div class="pt-5 text-sm font-light text-foreground/50">
+    <div class="pt-5 text-sm text-foreground/50">
       and many more... see the rest on <a
         class="text-blue-500 hover:underline"
         href="https://www.github.com/khalidbelhadj"
@@ -71,22 +65,18 @@ const previewPosts = posts
               <PostPreview post={p} />
             ))}
           </div>
-
-          <div class="pt-5 text-sm font-light text-foreground/50">
-            see all posts{" "}
-            <a class="text-blue-500 hover:underline" href="/posts">
-              here
-            </a>
-          </div>
         </>
       )
     }
 
+    <div class="pt-5 text-sm text-foreground/50">
+      See all posts
+      <a class="text-blue-500 hover:underline" href="/posts"> here </a>
+    </div>
+
     {
       previewPosts.length === 0 && (
-        <div class="pt-5 text-sm font-light text-foreground/50">
-          no posts yet
-        </div>
+        <div class="pt-5 text-sm text-foreground/50">No posts yet :&lpar;</div>
       )
     }
   </div>
@@ -120,7 +110,7 @@ const previewPosts = posts
     </div>
 
     <div>
-      <div class="text-foreground/50 font-light text-nowrap">
+      <div class="text-foreground/50 text-nowrap">
         &#169; {new Date().getFullYear()} Khalid Belhadj
       </div>
     </div>
