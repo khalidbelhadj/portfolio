@@ -2,20 +2,10 @@
 import "../styles/globals.css";
 import { projects } from "../consts";
 import BaseLayout from "../components/BaseLayout.astro";
-import { getCollection } from "astro:content";
-import PostPreview from "../components/PostPreview.astro";
-
-const posts = await getCollection("posts");
-
-const previewPosts = posts
-  .sort((a, b) => {
-    return b.data.date.getTime() - a.data.date.getTime();
-  })
-  .slice(0, 3);
 ---
 
 <BaseLayout>
-  <div class="pt-10">Software engineer, hope to write some posts soon</div>
+  <!-- <div class="pt-10">Software developer</div> -->
 
   <!-- Projects -->
   <div class="pt-10">
@@ -25,22 +15,24 @@ const previewPosts = posts
     </h1>
     <div class="flex flex-col gap-5 pt-5">
       {
-        projects.map((p) => (
-          <a href={p.url} target="_blank" class="group flex flex-col group">
-            <div class="flex items-center gap-2">
-              <span class="font-medium group-hover:underline">{p.name}</span>
-              <span class="text-foreground/50">{p.year}</span>
-              <div class="flex items-center gap-1">
-                {p.languages.map((l) => (
-                  <div class="text-foreground/75 text-sm bg-foreground/10 px-2 rounded-sm">
-                    {l}
-                  </div>
-                ))}
+        projects
+          .sort((a, b) => +b.year - +a.year)
+          .map((p) => (
+            <a href={p.url} target="_blank" class="group flex flex-col group">
+              <div class="flex items-center gap-2">
+                <span class="font-medium group-hover:underline">{p.name}</span>
+                <span class="text-foreground/50">{p.year}</span>
+                <div class="flex items-center gap-1">
+                  {p.languages.map((l) => (
+                    <div class="text-foreground/75 text-sm bg-foreground/10 px-2 rounded-sm">
+                      {l}
+                    </div>
+                  ))}
+                </div>
               </div>
-            </div>
-            <div class="text-foreground/75">{p.description}</div>
-          </a>
-        ))
+              <div class="text-foreground/75">{p.description}</div>
+            </a>
+          ))
       }
     </div>
     <div class="pt-5 text-sm text-foreground/50">
@@ -52,35 +44,6 @@ const previewPosts = posts
     </div>
   </div>
 
-  <div class="pt-10">
-    <h1 class="font-semibold text-lg">
-      <span>📝</span>
-      Recent Posts
-    </h1>
-    {
-      previewPosts.length > 0 && (
-        <>
-          <div class="flex flex-col gap-5 pt-5">
-            {previewPosts.map((p) => (
-              <PostPreview post={p} />
-            ))}
-          </div>
-        </>
-      )
-    }
-
-    <div class="pt-5 text-sm text-foreground/50">
-      See all posts
-      <a class="text-blue-500 hover:underline" href="/posts"> here </a>
-    </div>
-
-    {
-      previewPosts.length === 0 && (
-        <div class="pt-5 text-sm text-foreground/50">No posts yet :&lpar;</div>
-      )
-    }
-  </div>
-
   <div
     class="mt-auto pt-10 flex items-center justify-between gap-2 max-sm:flex-col"
   >
@@ -88,14 +51,14 @@ const previewPosts = posts
       <a
         href="/public-key.txt"
         target="_blank"
-        class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75 text-nowrap"
+        class="px-2 border w-fit text-sm text-foreground/75 text-nowrap"
       >
         PGP Public Key
       </a>
       <a
         href="https://www.github.com/khalidbelhadj"
         target="_blank"
-        class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75"
+        class="px-2 border w-fit text-sm text-foreground/75"
       >
         GitHub
       </a>
@@ -103,7 +66,7 @@ const previewPosts = posts
       <a
         href="https://www.linkedin.com/in/khalidbelhadj"
         target="_blank"
-        class="bg-accent rounded-full px-2 border w-fit text-sm text-foreground/75"
+        class="px-2 border w-fit text-sm text-foreground/75"
       >
         LinkedIn
       </a>
