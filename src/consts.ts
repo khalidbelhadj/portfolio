@@ -42,7 +42,7 @@ export const projects: Project[] = [
   {
     name: "Interpreter",
     description:
-      "A simple interpreter for a custom programming language, written in Rust",
+      "A simple interpreter for a custom procedural programming language, written in Rust",
     url: "https://www.github.com/khalidbelhadj/interpreter",
     year: "2024",
     languages: ["Rust"],
@@ -50,15 +50,14 @@ export const projects: Project[] = [
   {
     name: "Handwritten Digits Classifier",
     description:
-      "Classifier for the MNIST dataset using Stochastic Gradient Descent from scratch",
+      "Classifier for the MNIST dataset using Stochastic Gradient Descent from first principles",
     url: "https://github.com/khalidbelhadj/ml-cw",
     year: "2024",
     languages: ["Python"],
   },
   {
     name: "JSON Parser",
-    description:
-      "A JSON parser written in C, with a focus on performance and memory efficiency",
+    description: "A gradient descent based JSON parser written in C",
     url: "https://www.github.com/khalidbelhadj/json_parser",
     year: "2024",
     languages: ["C"],
