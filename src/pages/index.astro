@@ -9,10 +9,7 @@ import BaseLayout from "../components/BaseLayout.astro";
 
   <!-- Projects -->
   <div class="pt-10">
-    <h1 class="font-semibold text-lg">
-      <span>🚧</span>
-      Projects
-    </h1>
+    <h1 class="font-semibold text-lg">Projects</h1>
     <div class="flex flex-col gap-5 pt-5">
       {
         projects
@@ -22,13 +19,6 @@ import BaseLayout from "../components/BaseLayout.astro";
               <div class="flex items-center gap-2">
                 <span class="font-medium group-hover:underline">{p.name}</span>
                 <span class="text-foreground/50">{p.year}</span>
-                <div class="flex items-center gap-1">
-                  {p.languages.map((l) => (
-                    <div class="text-foreground/75 text-sm bg-foreground/10 px-2 rounded-sm">
-                      {l}
-                    </div>
-                  ))}
-                </div>
               </div>
               <div class="text-foreground/75">{p.description}</div>
             </a>
@@ -47,26 +37,25 @@ import BaseLayout from "../components/BaseLayout.astro";
   <div
     class="mt-auto pt-10 flex items-center justify-between gap-2 max-sm:flex-col"
   >
-    <div class="flex items-center gap-1">
+    <div class="flex items-center gap-3">
       <a
         href="/public-key.txt"
         target="_blank"
-        class="px-2 border w-fit text-sm text-foreground/75 text-nowrap"
+        class="text-sm text-foreground/50 hover:text-foreground"
       >
         PGP Public Key
       </a>
       <a
         href="https://www.github.com/khalidbelhadj"
         target="_blank"
-        class="px-2 border w-fit text-sm text-foreground/75"
+        class="text-sm text-foreground/50 hover:text-foreground"
       >
         GitHub
       </a>
-
       <a
         href="https://www.linkedin.com/in/khalidbelhadj"
         target="_blank"
-        class="px-2 border w-fit text-sm text-foreground/75"
+        class="text-sm text-foreground/50 hover:text-foreground"
       >
         LinkedIn
       </a>
