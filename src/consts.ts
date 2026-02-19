@@ -98,4 +98,12 @@ export const projects: Project[] = [
     year: "2025",
     languages: ["C"],
   },
+  {
+    name: "Triangulation by Ear Clipping",
+    description:
+      "Demonstration of ear clipping algorithms for polygon triangulation, written in Odin",
+    url: "https://github.com/khalidbelhadj/ear-clipping",
+    year: "2025",
+    languages: ["Odin"],
+  },
 ];
