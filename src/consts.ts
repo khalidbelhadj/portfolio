@@ -48,7 +48,7 @@ export const projects: Project[] = [
     languages: ["Rust"],
   },
   {
-    name: "Handwritten Digits Classifier",
+    name: "Digits Classifier",
     description:
       "Classifier for the MNIST dataset using Stochastic Gradient Descent from first principles",
     url: "https://github.com/khalidbelhadj/ml-cw",
